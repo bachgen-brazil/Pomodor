@@ -1,0 +1,75 @@
+let minutosHTML = document.getElementById("minutos")
+let secondsHTML = document.querySelector("#segundos")
+let zero = document.querySelector('#zero')
+let start = document.querySelector('#start')
+let parar = document.getElementById('stop')
+let work = 24
+let seconds = 5
+let trabalho = false
+let isRunning = false
+let stop;
+
+function Timer(){
+    if(seconds<0 && work==0 && trabalho == false && seconds <10){
+        work = 5
+        seconds = 0
+        trabalho = true
+        zero.innerText = 0
+    }else if(trabalho==true && seconds<0  && work==0 && seconds <10){
+        trabalho = false
+        work = 24
+        seconds = 59
+    }
+    else if(seconds<0){
+        work--
+        seconds = 59
+    }
+    
+    minutosHTML.innerText = work
+    secondsHTML.innerText = seconds
+    seconds--
+}
+
+// function StarTime(){
+//     if(!isRunning){
+//         stop = setInterval(Timer,1000)
+//         isRunning = true
+//     }
+
+// }
+
+// function PauseTimer(){
+//     if(isRunning){
+//         clearInterval(stop)
+//         isRunning = false
+//     }
+// }
+
+
+
+// console.log(minutos.innerHTML)
+
+// function ola(){
+//     console.log('olá mundo')
+// }
+
+// ola()
+
+// let timer = setInterval(ola, 1000) 
+
+// clearInterval(timer)
+
+
+start.addEventListener('click', () => {
+    if(!isRunning){
+        stop = setInterval(Timer,1000)
+        isRunning = true
+    }
+})
+
+parar.addEventListener('click', ()=>{
+    if(isRunning){
+        clearInterval(stop)
+        isRunning = false
+    }
+})
